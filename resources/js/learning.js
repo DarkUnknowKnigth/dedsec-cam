@@ -57,6 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < window.maxPredictions; i++) {
             const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             window.labelContainer.childNodes[i].innerHTML = classPrediction;
+            if (prediction[2].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
+                console.log('sospechoso');
+            } else if (prediction[7].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#00FF00";
+            } else if (prediction[6].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#FF0000";
+            }
         }
         // finally draw the poses
         drawPose(pose);
