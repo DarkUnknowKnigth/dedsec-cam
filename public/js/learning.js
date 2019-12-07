@@ -928,9 +928,19 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   };
+  /**
+   * normal face 7
+   * sospechoso 2 
+   * intimidado 1
+   * comportamineto normal 5
+   * comportamiento ordinario 0
+   * atacando 3
+   * sospechosos movimientos 4
+   */
+
 
   window.predict = function _callee3() {
-    var _ref, pose, posenetOutput, prediction, i, classPrediction, orderA;
+    var _ref, pose, posenetOutput, prediction, i, classPrediction;
 
     return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee3$(_context3) {
       while (1) {
@@ -950,39 +960,40 @@ document.addEventListener('DOMContentLoaded', function () {
             prediction = _context3.sent;
 
             for (i = 0; i < window.maxPredictions; i++) {
+              console.log(prediction[i].className + ": " + i + ' ' + prediction[i].probability.toFixed(2));
               classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
               window.labelContainer.childNodes[i].innerHTML = classPrediction;
-            }
 
-            orderA = Array.from(prediction).sort(function (a, b) {
-              a.probability > b.probability;
-            });
-            console.log(orderA[0].className);
-            _context3.t0 = orderA[0].className;
-            _context3.next = _context3.t0 === 'atacando' ? 14 : _context3.t0 === 'sospechoso' ? 16 : _context3.t0 === 'intimidado' ? 18 : 20;
-            break;
-
-          case 14:
-            document.getElementById('cam-1').style.backgroundColor = "#FF0000";
-            return _context3.abrupt("break", 22);
-
-          case 16:
-            document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
-            return _context3.abrupt("break", 22);
-
-          case 18:
-            document.getElementById('cam-1').style.backgroundColor = "#FF8000";
-            return _context3.abrupt("break", 22);
-
-          case 20:
-            document.getElementById('cam-1').style.backgroundColor = "#00FF00";
-            return _context3.abrupt("break", 22);
-
-          case 22:
+              if (prediction[2].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
+                console.log('sospechoso');
+              } else if (prediction[7].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#00FF00";
+              } else if (prediction[6].probability.toFixed(2) > 0.80) {
+                document.getElementById('cam-1').style.backgroundColor = "#FF0000";
+              }
+            } //let orderA = Array.from(prediction).sort((a, b) => { a.probability > b.probability });
+            // console.log(orderA[0].className);
+            // switch (orderA[0].className) {
+            //     case 'atacando':
+            //         document.getElementById('cam-1').style.backgroundColor = "#FF0000";
+            //         break;
+            //     case 'sospechoso':
+            //         document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
+            //         break;
+            //     case 'intimidado':
+            //         document.getElementById('cam-1').style.backgroundColor = "#FF8000";
+            //         break;
+            //     default:
+            //         document.getElementById('cam-1').style.backgroundColor = "#00FF00";
+            //         break;
+            // }
             // finally draw the poses
+
+
             drawPose(pose);
 
-          case 23:
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -1012,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\laragon\www\security\resources\js\learning.js */"./resources/js/learning.js");
+module.exports = __webpack_require__(/*! /Users/alex/Desarrollo/hack 2019/dedsec-cam/resources/js/learning.js */"./resources/js/learning.js");
 
 
 /***/ })
