@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('name')
+@section('content')
 <div class="container">
     <div class="row">
         @foreach ($crimes as $crime)
@@ -11,6 +11,7 @@
                     </div>
                     <div class="card-body">
                         Tipo de arma: {{$crime->gun}}
+                        Tipo : {{$crime->type->name}}
                     </div>
                 </div>
             </div>

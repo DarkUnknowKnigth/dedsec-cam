@@ -851,6 +851,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.URL = "./model/";
   window.model;
   window.webcam;
+  window.publicP;
   window.ctx;
   window.labelContainer;
   window.maxPredictions;
@@ -909,6 +910,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   window.loop = function _callee2(timestamp) {
+    var major;
     return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -919,9 +921,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(predict());
 
           case 3:
+            major = Array.from(window.publicP).sort(function (a, b) {
+              a.probability < b.probability;
+            });
+            console.log(major);
             window.requestAnimationFrame(loop);
 
-          case 4:
+          case 6:
           case "end":
             return _context2.stop();
         }
@@ -930,7 +936,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   window.predict = function _callee3() {
-    var _ref, pose, posenetOutput, prediction, i, classPrediction, orderA;
+    var _ref, pose, posenetOutput, prediction, i, classPrediction;
 
     return _babel_runtime_regenerator_index_js__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee3$(_context3) {
       while (1) {
@@ -948,41 +954,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
           case 7:
             prediction = _context3.sent;
+            window.publicP = prediction;
 
             for (i = 0; i < window.maxPredictions; i++) {
               classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
               window.labelContainer.childNodes[i].innerHTML = classPrediction;
-            }
+            } // finally draw the poses
 
-            orderA = Array.from(prediction).sort(function (a, b) {
-              a.probability > b.probability;
-            });
-            console.log(orderA[0].className);
-            _context3.t0 = orderA[0].className;
-            _context3.next = _context3.t0 === 'atacando' ? 14 : _context3.t0 === 'sospechoso' ? 16 : _context3.t0 === 'intimidado' ? 18 : 20;
-            break;
 
-          case 14:
-            document.getElementById('cam-1').style.backgroundColor = "#FF0000";
-            return _context3.abrupt("break", 22);
-
-          case 16:
-            document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
-            return _context3.abrupt("break", 22);
-
-          case 18:
-            document.getElementById('cam-1').style.backgroundColor = "#FF8000";
-            return _context3.abrupt("break", 22);
-
-          case 20:
-            document.getElementById('cam-1').style.backgroundColor = "#00FF00";
-            return _context3.abrupt("break", 22);
-
-          case 22:
-            // finally draw the poses
             drawPose(pose);
 
-          case 23:
+          case 11:
           case "end":
             return _context3.stop();
         }

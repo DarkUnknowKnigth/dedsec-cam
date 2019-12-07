@@ -23,7 +23,6 @@ class CreateCrimesTable extends Migration
             $table->string('type_id');
             $table->timestamps();
             $table->unsignedBigInteger('scene_id')->nullable();
-            $table->unsignedBigInteger('place_id')->nullable();
 
             // $table->unsignedBigInteger('scene')->references('id')->on('scenes');
         });

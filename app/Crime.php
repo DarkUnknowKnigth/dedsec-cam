@@ -16,6 +16,9 @@ class Crime extends Model
         'scene_id',
         'imagePath'
     ];
+    public function type(){
+        return $this->belongsTo('App\Type');
+    }
     public function places(){
         return $this->hasMany('App\Place');
     }

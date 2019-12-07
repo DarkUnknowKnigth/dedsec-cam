@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.URL = "./model/";
     window.model;
     window.webcam;
+    window.publicP;
     window.ctx;
     window.labelContainer;
     window.maxPredictions;
@@ -40,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.loop = async function(timestamp) {
         window.webcam.update(); // update the window.webcam frame
         await predict();
+        let major = Array.from(window.publicP).sort((a, b) => { a.probability < b.probability });
+        console.log(major);
         window.requestAnimationFrame(loop);
     }
 
@@ -49,26 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const { pose, posenetOutput } = await window.model.estimatePose(window.webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await window.model.predict(posenetOutput);
+        window.publicP = prediction;
 
         for (let i = 0; i < window.maxPredictions; i++) {
             const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             window.labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
-        let orderA = Array.from(prediction).sort((a, b) => { a.probability > b.probability });
-        console.log(orderA[0].className);
-        switch (orderA[0].className) {
-            case 'atacando':
-                document.getElementById('cam-1').style.backgroundColor = "#FF0000";
-                break;
-            case 'sospechoso':
-                document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
-                break;
-            case 'intimidado':
-                document.getElementById('cam-1').style.backgroundColor = "#FF8000";
-                break;
-            default:
-                document.getElementById('cam-1').style.backgroundColor = "#00FF00";
-                break;
         }
         // finally draw the poses
         drawPose(pose);

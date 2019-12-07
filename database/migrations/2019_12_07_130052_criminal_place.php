@@ -17,7 +17,7 @@ class CriminalPlace extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('criminal_id')->nullable();
             $table->unsignedBigInteger('place_id')->nullable();
-            $table->date('fecha');
+            $table->date('date');
             $table->timestamps();
         });
     }
