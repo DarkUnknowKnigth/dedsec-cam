@@ -924,10 +924,9 @@ document.addEventListener('DOMContentLoaded', function () {
             major = Array.from(window.publicP).sort(function (a, b) {
               a.probability < b.probability;
             });
-            console.log(major);
             window.requestAnimationFrame(loop);
 
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }
@@ -962,7 +961,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
               if (prediction[2].probability.toFixed(2) > 0.80) {
                 document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
-                console.log('sospechoso');
               } else if (prediction[7].probability.toFixed(2) > 0.80) {
                 document.getElementById('cam-1').style.backgroundColor = "#00FF00";
               } else if (prediction[6].probability.toFixed(2) > 0.80) {

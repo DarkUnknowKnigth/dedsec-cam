@@ -11456,3 +11456,38 @@ a.text-dark:focus {
   width: 100%;
 }
 
+.boton {
+  height: 4.5rem;
+  font-size: 1.5rem;
+  border-radius: 3.3rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.fas,
+.far {
+  margin-right: 2rem;
+  font-size: 2.2rem;
+}
+
+.card-header h5 {
+  font-size: 2rem;
+}
+
+.card-header.card-tit {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: stretch;
+          align-items: stretch;
+}
+
+.card-header.card-tit .fas {
+  margin-right: 3rem;
+}
+

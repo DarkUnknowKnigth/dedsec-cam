@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header" id="cam-1">
+        <div class="card-header card-tit" id="cam-1">
+                <i class="fas fa-video"></i>
             <h5 class="card-title">Cam 1 - | Sistema de vigilancia</h5>
         </div>
         <div class="card-body p-0">
@@ -19,13 +23,24 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <button type="button" class="btn btn-danger form-control" onclick="document.getElementById('form').submit()">Alerta</button>
+
+                    <button type="button" class="boton btn btn-danger form-control" onclick="document.getElementById('form').submit()">
+                        <i class="fas fa-exclamation-triangle">   </i>
+                        Alerta
+                    </button>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-secondary form-control">Falso</button>
+                    <button type="button" class="boton btn btn-secondary form-control">
+                            <i class="fas fa-times"></i>
+                        Falso
+                    </button>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-primary form-control" type="button" onclick="init()">Start</button>
+                    <button class="boton btn btn-primary form-control" type="button" onclick="init()">
+                            <i class="far fa-play-circle"></i>
+
+
+                        Start</button>
                 </div>
             </div>
         </div>

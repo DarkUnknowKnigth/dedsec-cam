@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.webcam.update(); // update the window.webcam frame
         await predict();
         let major = Array.from(window.publicP).sort((a, b) => { a.probability < b.probability });
-        console.log(major);
         window.requestAnimationFrame(loop);
     }
 
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.labelContainer.childNodes[i].innerHTML = classPrediction;
             if (prediction[2].probability.toFixed(2) > 0.80) {
                 document.getElementById('cam-1').style.backgroundColor = "#FFFF00";
-                console.log('sospechoso');
             } else if (prediction[7].probability.toFixed(2) > 0.80) {
                 document.getElementById('cam-1').style.backgroundColor = "#00FF00";
             } else if (prediction[6].probability.toFixed(2) > 0.80) {
